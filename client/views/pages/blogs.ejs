@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ../head.ejs %>
+</head>
+
+<body>
+    <%- include ../nav.ejs %>
+        <section class="content">
+            <div class="container">
+                <form id="form-item" action="" method="POST">
+                    <div class="form-group">
+                        <label for="txt-name">Contributor</label>
+                        <input type="text" class="form-control" id="contributor" name="contributor" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Article</label>
+                        <input type="text" class="form-control" id="article" name="article" placeholder="article">
+                    </div>
+                    <button id="btn-hihi" type="submit" class="btn btn-default">Submit</button>
+                </form>
+              <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading">My Blog</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Contributor</th>
+                                <th>Article</th>
+                            </tr>
+                        </thead>
+                        <tbody id="item-list" >
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+        <%- include ../script.ejs %>
+            <script src="/js/items.js"></script>
+</body>
+
+</html>
