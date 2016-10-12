@@ -4,6 +4,7 @@ var ejs = require('ejs')
 var app = express()
 var port = process.env.PORT || 9000;
 
+
 // view engine setup
 app.set('view engine', 'ejs');
 
@@ -19,3 +20,7 @@ app.use('/', require('./routes'))
 
 app.listen(port);
 console.log('The magic happens on port ' + port);
+
+
+//
+// cobain passport
