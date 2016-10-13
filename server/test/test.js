@@ -23,7 +23,7 @@ describe('StackOverClone', function() {
             });
     });
 
-    it.skip('should add a SINGLE blob on /api/blogs POST', function(done) {
+    it('should add a SINGLE blob on /api/blogs POST', function(done) {
         chai.request('http://localhost:8080')
             .post('/api/blogs')
             .send({

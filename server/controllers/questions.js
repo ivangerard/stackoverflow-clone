@@ -5,17 +5,19 @@ module.exports = {
     displays: displays,
     displayId: displayId,
     update: update,
-    deleteitem: deleteitem
+    deleteitem: deleteitem,
+    addAnswer: addAnswer
+
 }
 
 function insert(req, res, next) {
 
     var questions = new Questions({
-        question: req.body.question,
-        description: req.body.description,
-        votes: req.body.votes
+        title: req.body.title,
+        detail: req.body.detail,
+        username: req.body.username
+            //  user: ObjectId(req.body.userId)
     })
-
     questions.save((err) => {
         if (err)
             throw err
@@ -66,3 +68,23 @@ function deleteitem(req, res) {
         })
     })
 }
+
+function addAnswer(req, res) {
+
+    Questions.findOne({
+        _id: req.params.id
+    }, (err, question) => {
+        question.answer.push({
+            detail: req.body.detail
+
+        })
+        question.save((err) => {
+            if (err)
+                throw err;
+            res.json(question)
+        })
+    })
+}
+
+
+/////////////////////////////////////////

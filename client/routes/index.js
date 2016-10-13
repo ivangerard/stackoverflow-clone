@@ -21,5 +21,21 @@ router.get('/signup', function(req, res, next) {
     res.render('pages/signup')
 })
 
+router.get('/questions', function(req, res, next) {
+    res.render('pages/question')
+})
+
+
+
+router.get('/questions/:id', function(req, res, next) {
+    res.render('pages/question-single')
+})
+
+router.get('/addquestions/', function(req, res, next) {
+    res.render('pages/addquestion')
+})
+
+
+
 
 module.exports = router

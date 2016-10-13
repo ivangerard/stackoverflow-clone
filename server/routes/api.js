@@ -11,11 +11,9 @@ router.get('/questions/:id', questionsController.displayId)
 router.put('/questions/:id', questionsController.update)
 router.delete('/questions/:id', questionsController.deleteitem)
 
-//
-// router.post('/users', userController.insert)
-// router.get('/users', userController.displays)
-// router.put('/users/:id', userController.update)
-// router.delete('/users/:id', userController.deleteitem)
+
+
+router.post('/questions/:id/addanswer', questionsController.addAnswer)
 
 
 module.exports = router

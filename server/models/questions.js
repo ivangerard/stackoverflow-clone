@@ -12,19 +12,20 @@ var questionSchema = mongoose.Schema({
         user: {
             $ref: "users",
             type: Schema.Types.ObjectId
-        }
-    }],
-    votes: [{
-        user: {
-            $ref: "users",
-            type: Schema.Types.ObjectId
-        }
+        },
+        username: String,
+        votes: Number
     }],
     user: {
         $ref: "users",
         type: Schema.Types.ObjectId
-    }
+    },
+    username: String,
+    votesQuestion: Number
+}, {
+    timestamps: true
 });
+
 
 
 // create the model for users and expose it to our app

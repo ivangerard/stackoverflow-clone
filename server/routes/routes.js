@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
         });
     });
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: 'http://localhost:9000', // redirect to the secure profile section
+        successRedirect: 'http://localhost:9000/questions', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
