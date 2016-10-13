@@ -5,8 +5,25 @@ var Schema = mongoose.Schema;
 
 // define the schema for our user model
 var questionSchema = mongoose.Schema({
-    question: String,
-    votes: Number
+    questionTitle: String,
+    questionDetail: String,
+    answer: [{
+        answerDetail: String,
+        usersAnswer: {
+            $ref: "users",
+            type: Schema.Types.ObjectId
+        }
+    }],
+    votes: [{
+        usersVotes: {
+            $ref: "users",
+            type: Schema.Types.ObjectId
+        }
+    }],
+    users: {
+        $ref: "users",
+        type: Schema.Types.ObjectId
+    }
 });
 
 

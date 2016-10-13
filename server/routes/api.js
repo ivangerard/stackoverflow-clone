@@ -7,13 +7,15 @@ var questionsController = require('../controllers/questions')
 
 router.post('/questions', questionsController.insert)
 router.get('/questions', questionsController.displays)
+router.get('/questions/:id', questionsController.displayId)
 router.put('/questions/:id', questionsController.update)
 router.delete('/questions/:id', questionsController.deleteitem)
-    //
-    // router.post('/users', userController.insert)
-    // router.get('/users', userController.displays)
-    // router.put('/users/:id', userController.update)
-    // router.delete('/users/:id', userController.deleteitem)
+
+//
+// router.post('/users', userController.insert)
+// router.get('/users', userController.displays)
+// router.put('/users/:id', userController.update)
+// router.delete('/users/:id', userController.deleteitem)
 
 
 module.exports = router

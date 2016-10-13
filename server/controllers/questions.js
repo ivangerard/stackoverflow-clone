@@ -3,6 +3,7 @@ var Questions = require('../models/questions')
 module.exports = {
     insert: insert,
     displays: displays,
+    displayId: displayId,
     update: update,
     deleteitem: deleteitem
 }
@@ -11,7 +12,8 @@ function insert(req, res, next) {
 
     var questions = new Questions({
         question: req.body.question,
-        votes: req.body.votes,
+        description: req.body.description,
+        votes: req.body.votes
     })
 
     questions.save((err) => {
@@ -29,11 +31,20 @@ function displays(req, res) {
     })
 }
 
+
+function displayId(req, res) {
+    Questions.findOne({
+        _id: req.params.id
+    }, (err, questions) => {
+        res.json(questions)
+    })
+}
+
 function update(req, res) {
 
     Questions.findOne({
         _id: req.params.id
-    }, (err, blogs) => {
+    }, (err, questions) => {
         //update the book
         questions.question = req.body.question
         questions.votes = req.body.votes
@@ -49,7 +60,7 @@ function update(req, res) {
 function deleteitem(req, res) {
     Questions.remove({
         _id: req.params.id
-    }, (err, blogs) => {
+    }, (err, questions) => {
         res.json({
             "messages": "File deleted"
         })
