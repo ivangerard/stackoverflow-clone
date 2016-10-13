@@ -106,7 +106,7 @@
 							============================================= -->
 							<div id="" class="clearfix">
 
-								<h3 id="comments-title"><span>3</span> Answer</h3>
+								<h3 id="totalAnswer"></h3>
 
 								<!-- Comments List
 								============================================= -->
@@ -488,6 +488,12 @@
 			$.get({
 					url: "http://localhost:8080/api"+window.location.pathname,
 					success: function(result) {
+							var total =$("#totalAnswer")
+							var totalAnswer =
+							`
+								<span>${result.answer.length}</span> Answer
+							`
+							total.append(totalAnswer)
 
 							var list = $("div#listanswer")
 							list.empty()
@@ -503,8 +509,8 @@
 												</div>
 											</div>
 											<div class="comment-content clearfix">
-												<div class="comment-author"><a href='http://themeforest.net/user/semicolonweb' rel='external nofollow' class='url'>SemiColon</a><span><a href="#" title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span></div>
-												<p>${result.answer[0].detail}</p>
+												<div class="comment-author"><a href='http://themeforest.net/user/semicolonweb' rel='external nofollow' class='url'>${result.answer[idx].username}</a><span><a href="#" title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span></div>
+												<p>${result.answer[idx].detail}</p>
 												<a class='comment-reply-link' href='#'><i class="icon-reply"></i></a>
 											</div>
 											<div class="clear"></div>

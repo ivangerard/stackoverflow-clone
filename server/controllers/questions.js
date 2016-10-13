@@ -6,7 +6,11 @@ module.exports = {
     displayId: displayId,
     update: update,
     deleteitem: deleteitem,
-    addAnswer: addAnswer
+    addAnswer: addAnswer,
+    voteAnswerUp: voteAnswerUp,
+    voteAnswerDown: voteAnswerDown,
+    voteUp: voteUp,
+    voteDown: voteDown
 
 }
 
@@ -69,14 +73,35 @@ function deleteitem(req, res) {
     })
 }
 
+
+//
+// function addAnswer(req, res) {
+//
+//     Questions.findOne({
+//         _id: req.params.id
+//     }, (err, question) => {
+//
+//
+//         questions.title = req.body.title
+//         questions.detail = req.body.detail
+//         questions.answer = req.body.answer
+//         questions.save((err) => {
+//             if (err)
+//                 throw err;
+//             res.json(questions)
+//         })
+//     })
+// }
+
+
 function addAnswer(req, res) {
 
     Questions.findOne({
         _id: req.params.id
     }, (err, question) => {
         question.answer.push({
-            detail: req.body.detail
-
+            detail: req.body.detail,
+            username: req.body.username
         })
         question.save((err) => {
             if (err)
@@ -85,6 +110,67 @@ function addAnswer(req, res) {
         })
     })
 }
-
-
 /////////////////////////////////////////
+
+function voteAnswerUp(req, res) {
+    Questions.findOne({
+        _id: req.params.id
+    }, (err, question) => {
+        question.answer[req.params.idx].votes += 1
+
+        question.save((err) => {
+            if (err)
+                throw err;
+
+            res.json(question)
+        })
+    })
+}
+
+function voteAnswerDown(req, res) {
+    Questions.findOne({
+        _id: req.params.id
+    }, (err, question) => {
+        question.answer[req.params.idx].answer_votes -= 1
+
+        question.save((err) => {
+            if (err)
+                throw err;
+            res.json(question)
+        })
+    })
+}
+
+function voteUp(req, res) {
+    //finding a current question
+    Questions.findOne({
+        _id: req.params.id
+    }, (err, question) => {
+        //update the question
+        question.votesQuestion += 1
+
+        question.save((err) => {
+            if (err)
+                throw err;
+
+            res.json(question)
+        })
+    })
+}
+
+function voteDown(req, res) {
+    //finding a current question
+    Questions.findOne({
+        _id: req.params.id
+    }, (err, question) => {
+        //update the question
+        question.votesQuestion -= 1
+
+        question.save((err) => {
+            if (err)
+                throw err;
+
+            res.json(question)
+        })
+    })
+}
